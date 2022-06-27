@@ -34,7 +34,7 @@ public class RepairTargetGenerator {
 
 			if (repairTargetList != null) {
 				RepairTargetGenerator.resetMaxSuspiciousnessScore();
-				System.out.println("Repair Target list: " + repairTargetList);
+				repairTargetList.forEach(System.out::println);
 				repairTargetForFailureMap.put(failureInfo, repairTargetList);
 			}
 		}
