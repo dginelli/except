@@ -107,7 +107,7 @@ public class RepairTargetGenerator {
 			case ARRAY_INDEX:
 				return GuessedFault.ARRAY_INDEX_IS_WRONG;
 			case INDEX_USED_FOR_ARRAY_INITIALIZATION:
-				return GuessedFault.ARRAY_INDEX_IS_WRONG;
+				return GuessedFault.ARRAY_INDEX_INITIALIZATION_IS_WRONG;
 			case ARRAY_INDEX_VARIABLE_ASSIGNMENT:
 				return GuessedFault.ARRAY_INDEX_INITIALIZATION_IS_WRONG;
 			case ARRAY_INITIALIZATION:
