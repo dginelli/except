@@ -1,7 +1,10 @@
 package it.unimib;
 
 import it.unimib.core.ExceptMain;
+import it.unimib.model.RepairTarget;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -18,8 +21,8 @@ public class ArrayIndexOutOfBoundsExceptionTest {
         String testsSourceCodePath = "./examples/math_098_buggy/src/test";
         String testsClassesPath = "./examples/math_098_buggy/target/test-classes";
 
-        ExceptMain.startAnalysisWithOnlyLocalization(programName, programSourceCodePath, programClassesPath,
-                testsSourceCodePath, testsClassesPath, null);
+        ExceptMain.startAnalysisWithOnlyLocalization(programSourceCodePath, programClassesPath,
+                testsSourceCodePath, testsClassesPath, null, null);
     }
 
     @Test
@@ -31,8 +34,8 @@ public class ArrayIndexOutOfBoundsExceptionTest {
         String testsClassesPath = "./examples/lang_012_buggy/target/tests";
         String lib = "./examples/lang_012_buggy/lib";
 
-        ExceptMain.startAnalysisWithOnlyLocalization(programName, programSourceCodePath, programClassesPath,
-                testsSourceCodePath, testsClassesPath, lib);
+        ExceptMain.startAnalysisWithOnlyLocalization(programSourceCodePath, programClassesPath,
+                testsSourceCodePath, testsClassesPath, lib, null);
     }
 
     @Test

@@ -21,7 +21,7 @@ public class SBFLRankingMergingUtil {
 
     public SBFLRankingMergingUtil() {}
 
-    public static void mergeRepairTargetsWithFlacocoResults(String programName, FailureInfo failureInfo, List<RepairTarget> repairTargetList, FlacocoResult flacocoResult) {
+    public static void mergeRepairTargetsWithFlacocoResults(String outputFolder, FailureInfo failureInfo, List<RepairTarget> repairTargetList, FlacocoResult flacocoResult) {
 
         repairTargetList.sort(Comparator.comparingDouble(RepairTarget::getSuspiciousnessScore).reversed());
         Map<Location, Suspiciousness> sbflRanking = flacocoResult.getDefaultSuspiciousnessMap();
@@ -33,7 +33,11 @@ public class SBFLRankingMergingUtil {
                     repairTargetList.get(finalI).getSuspiciousLocation().getLineNumber() == e.getKey().getLineNumber());
         }
 
-        String output = EXCEPT_WORKING_DIR + File.separator + programName + File.separator +
+        if (outputFolder == null) {
+            outputFolder = EXCEPT_WORKING_DIR;
+        }
+
+        String output = outputFolder + File.separator +
                 failureInfo.getFailingTestClass().replace(".", "-") + "#" + failureInfo.getFailingTestMethod();
 
         writeResults(repairTargetList, sbflRanking, output);

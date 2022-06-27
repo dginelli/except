@@ -42,13 +42,14 @@ public class ExceptMain {
             String dependencies = exceptParametersCommander.getDependencies();
             String output = exceptParametersCommander.getOutputDirectory();
 
-            startAnalysisWithOnlyLocalization(programSourceCodePath, programClassesPath, testsSourceCodePath,
-                    testsClassesPath, dependencies, output);
+            startAnalysisWithOnlyLocalization(output, programSourceCodePath, programClassesPath, testsSourceCodePath,
+                    testsClassesPath, dependencies);
         }
     }
 
-    public static void startAnalysisWithOnlyLocalization(String programName, String programSourceCodePath, String programClassesPath,
-                                               String testsSourceCodePath, String testsClassesPath, String dependencies) {
+    public static void startAnalysisWithOnlyLocalization(String programSourceCodePath, String programClassesPath,
+                                               String testsSourceCodePath, String testsClassesPath,
+                                                         String dependencies, String outputFolder) {
 
         logger.info("Analysis started...");
 
@@ -60,12 +61,16 @@ public class ExceptMain {
                 RepairTargetGenerator.getRepairTargets(failuresInformationList, programSourceCodePath);
 
         for (Map.Entry<FailureInfo, List<RepairTarget>> set : repairTargetForFailureMap.entrySet()) {
-            SBFLRankingMergingUtil.mergeRepairTargetsWithFlacocoResults(programName, set.getKey(), set.getValue(),
+            SBFLRankingMergingUtil.mergeRepairTargetsWithFlacocoResults(outputFolder, set.getKey(), set.getValue(),
                     testCasesExecutor.getFlacocoResult());
         }
 
+        if (outputFolder == null) {
+            outputFolder = EXCEPT_WORKING_DIR;
+        }
+
         logger.info("Process ended: the output is available in the folder " +
-                EXCEPT_WORKING_DIR + File.separator + programName);
+                outputFolder);
     }
 
     public static List<RepairTarget> startAnalysisWithLocalizationAPI(String programSourceCodePath, String programClassesPath,
@@ -81,11 +86,6 @@ public class ExceptMain {
 
         List<RepairTarget> repairTargetList = SBFLRankingMergingUtil.
                 getRepairTargetsWithFlacocoResults(repairTargetForFailureMap, testCasesExecutor.getFlacocoResult());
-
-        repairTargetList.forEach(item -> {
-            System.out.println(item.getSuspiciousLocation().getClassName() + " " +
-                    item.getSuspiciousLocation().getLineNumber() + " " + item.getSuspiciousnessScore());
-        });
 
         logger.info("Process ended");
 
