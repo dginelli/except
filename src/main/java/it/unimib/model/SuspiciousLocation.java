@@ -78,7 +78,7 @@ public class SuspiciousLocation {
 	@Override
 	public String toString() {
 		return "SuspiciousLocation [className=" + className + ", fileName=" + fileName + ", lineNumber=" + lineNumber
-				+ ", suspiciousExpression=" + suspiciousExpression.toString().replace(";", "") + ", locationType=" + locationType + "]";
+				+ ", suspiciousExpression=" + suspiciousExpression + ", locationType=" + locationType + "]";
 	}
 
 	@Override
