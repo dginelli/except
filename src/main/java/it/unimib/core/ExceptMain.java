@@ -42,8 +42,8 @@ public class ExceptMain {
             String dependencies = exceptParametersCommander.getDependencies();
             String output = exceptParametersCommander.getOutputDirectory();
 
-            startAnalysisWithOnlyLocalization(output, programSourceCodePath, programClassesPath, testsSourceCodePath,
-                    testsClassesPath, dependencies);
+            startAnalysisWithOnlyLocalization(programSourceCodePath, programClassesPath, testsSourceCodePath,
+                    testsClassesPath, dependencies, output);
         }
     }
 
