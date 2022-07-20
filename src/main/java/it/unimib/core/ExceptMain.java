@@ -91,4 +91,18 @@ public class ExceptMain {
 
         return repairTargetList;
     }
+
+    public static Map<FailureInfo, List<RepairTarget>> getRepairTargetsMap(String programSourceCodePath, String programClassesPath,
+                                                                           String testsSourceCodePath, String testsClassesPath,
+                                                                           String dependencies) {
+        logger.info("Analysis started...");
+
+        TestCasesExecutor testCasesExecutor = new TestCasesExecutor(programSourceCodePath, programClassesPath, testsSourceCodePath,
+                testsClassesPath, dependencies);
+        List<FailureInfo> failuresInformationList = testCasesExecutor.getFailuresInformation();
+
+        logger.info("Process ended");
+
+        return RepairTargetGenerator.getRepairTargets(failuresInformationList, programSourceCodePath);
+    }
 }
