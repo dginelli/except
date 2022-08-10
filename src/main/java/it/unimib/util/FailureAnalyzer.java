@@ -53,7 +53,7 @@ public final class FailureAnalyzer {
 					!stackTraceArray[i].startsWith(JUNIT_CLASS_PREFIX) &&
 					!stackTraceArray[i].startsWith(JUNIT_FRAMEWORK_PREFIX) &&
 					!stackTraceArray[i].startsWith(STAMP_PROJECT) &&
-					//!stackTraceArray[i].startsWith(EXCALIBUR) &&
+					!stackTraceArray[i].startsWith(EXCALIBUR) &&
 					!(stackTraceArray[i].contains(classTestToExecute) ||
 							stackTraceArray[i].contains(testClassName))) {
 
